@@ -29,7 +29,7 @@
 <head>
     <title>Atualização Remota</title>
     <script>
-        var socket = new WebSocket('ws://SEU_ENDERECO_ESP32:81/');
+        var socket = new WebSocket('ws://192.168.0.150:81/');
         socket.onmessage = function(event) {
             var data = JSON.parse(event.data);
             document.getElementById('temperatura').innerText = 'Temperatura: ' + data.temperatura + ' °C';
