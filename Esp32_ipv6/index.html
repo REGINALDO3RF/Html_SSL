@@ -29,13 +29,10 @@
 <head>
   <title>Atualização de Temperatura e Umidade</title>
   <script>
-    var socket = new WebSocket("ws://192.168.152.251:81/");
-
-    socket.onmessage = function(event) {
-      var data = JSON.parse(event.data);
-      document.getElementById('temperature').innerText = data.temperature + "°C";
-      document.getElementById('humidity').innerText = data.humidity + "%";
-    };
+    function updateValues(temperature, humidity) {
+      document.getElementById('temperature').innerText = temperature + "°C";
+      document.getElementById('humidity').innerText = humidity + "%";
+    }
   </script>
 </head>
 <body>
@@ -43,6 +40,7 @@
   <h1>Umidade: <span id="humidity"></span></h1>
 </body>
 </html>
+
 
 
 
