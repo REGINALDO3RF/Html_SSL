@@ -25,27 +25,24 @@
 </html>
 -->
 <<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temperature and Humidity Display</title>
+  <title>Atualização de Temperatura e Umidade</title>
+  <script>
+    var socket = new WebSocket("ws://192.168.152.251:81/");
+
+    socket.onmessage = function(event) {
+      var data = JSON.parse(event.data);
+      document.getElementById('temperature').innerText = data.temperature + "°C";
+      document.getElementById('humidity').innerText = data.humidity + "%";
+    };
+  </script>
 </head>
 <body>
-    <h1>Temperature and Humidity</h1>
-    <div id="temperature"></div>
-    <div id="humidity"></div>
-
-    <script>
-        const socket = new WebSocket('192.168.152.251');
-        socket.addEventListener('message', function (event) {
-            const data = JSON.parse(event.data);
-            document.getElementById('temperature').innerText = `Temperature: ${data.temperature}°C`;
-            document.getElementById('humidity').innerText = `Humidity: ${data.humidity}%`;
-        });
-    </script>
+  <h1>Temperatura: <span id="temperature"></span></h1>
+  <h1>Umidade: <span id="humidity"></span></h1>
 </body>
 </html>
+
 
 
