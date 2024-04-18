@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +11,7 @@
         socket.onmessage = function(event) {
             var data = JSON.parse(event.data);
             document.getElementById("temp").innerHTML = "Temperatura: " + data.temperatura + "°C";
-            document.getElementById("umid").innerHTML fe80::9ebd:d171:c2b5:5131%15= "Umidade: " + data.umidade + "%";
+            document.getElementById("umid").innerHTML = "Umidade: " + data.umidade + "%";
         };
     </script>
 </head>
@@ -22,3 +23,24 @@
 </body>
 
 </html>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atualização Remota</title>
+    <script>
+        var socket = new WebSocket('ws://SEU_ENDERECO_ESP32:81/');
+        socket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            document.getElementById('temperatura').innerText = 'Temperatura: ' + data.temperatura + ' °C';
+            document.getElementById('umidade').innerText = 'Umidade: ' + data.umidade + ' %';
+        };
+    </script>
+</head>
+<body>
+    <h1>Atualização Remota</h1>
+    <p id="temperatura">Temperatura: -- °C</p>
+    <p id="umidade">Umidade: -- %</p>
+</body>
+</html>
+
