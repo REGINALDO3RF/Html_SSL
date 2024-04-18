@@ -24,23 +24,28 @@
 
 </html>
 -->
-<!DOCTYPE html>
-<html>
+<<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Atualização Remota</title>
-    <script>
-        var socket = new WebSocket('ws://192.168.0.150:81/');
-        socket.onmessage = function(event) {
-            var data = JSON.parse(event.data);
-            document.getElementById('temperatura').innerText = 'Temperatura: ' + data.temperatura + ' °C';
-            document.getElementById('umidade').innerText = 'Umidade: ' + data.umidade + ' %';
-        };
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature and Humidity Display</title>
 </head>
 <body>
-    <h1>Atualização Remota</h1>
-    <p id="temperatura">Temperatura: -- °C</p>
-    <p id="umidade">Umidade: -- %</p>
+    <h1>Temperature and Humidity</h1>
+    <div id="temperature"></div>
+    <div id="humidity"></div>
+
+    <script>
+        const socket = new WebSocket('ws://reginaldo3rf.github.io/Html_SSL/Esp32_ipv6/index.html');
+        socket.addEventListener('message', function (event) {
+            const data = JSON.parse(event.data);
+            document.getElementById('temperature').innerText = `Temperature: ${data.temperature}°C`;
+            document.getElementById('humidity').innerText = `Humidity: ${data.humidity}%`;
+        });
+    </script>
 </body>
 </html>
+
 
