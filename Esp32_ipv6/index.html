@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Atualização de Temperatura e Umidade</title>
+    <script>
+        var socket = new WebSocket("ws://[fe80::9ebd:d171:c2b5:5131%15]:12345/");
+
+        socket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            document.getElementById("temp").innerHTML = "Temperatura: " + data.temperatura + "°C";
+            document.getElementById("umid").innerHTML fe80::9ebd:d171:c2b5:5131%15= "Umidade: " + data.umidade + "%";
+        };
+    </script>
+</head>
+
+<body>
+    <h1>Atualização de Temperatura e Umidade</h1>
+    <div id="temp">Temperatura:</div>
+    <div id="umid">Umidade:</div>
+</body>
+
+</html>
