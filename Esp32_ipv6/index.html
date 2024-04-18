@@ -38,7 +38,7 @@
     <div id="humidity"></div>
 
     <script>
-        const socket = new WebSocket('192.168.152.251');
+        const socket = new WebSocket('192,168,152,251');
         socket.addEventListener('message', function (event) {
             const data = JSON.parse(event.data);
             document.getElementById('temperature').innerText = `Temperature: ${data.temperature}°C`;
