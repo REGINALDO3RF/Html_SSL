@@ -27,19 +27,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Atualização de Temperatura e Umidade</title>
-  <script>
-    function updateValues(temperature, humidity) {
-      document.getElementById('temperature').innerText = temperature + "°C";
-      document.getElementById('humidity').innerText = humidity + "%";
-    }
-  </script>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="5">
+  <title>Temperatura e Umidade</title>
 </head>
 <body>
-  <h1>Temperatura: <span id="temperature"></span></h1>
-  <h1>Umidade: <span id="humidity"></span></h1>
+  <h1>Valores de Temperatura e Umidade</h1>
+  <p>Temperatura: <span id="temp"></span>°C</p>
+  <p>Umidade: <span id="umid"></span>%</p>
+
+  <script>
+    const url = 'https://SEU_SUBDOMINIO.ngrok.io';
+    fetch(url)
+      .then(response => response.text())
+      .then(data => {
+        const temp = data.match(/Temperatura: (\d+\.\d+)/)[1];
+        const umid = data.match(/Umidade: (\d+\.\d+)/)[1];
+        document.getElementById('temp').textContent = temp;
+        document.getElementById('umid').textContent = umid;
+      })
+      .catch(error => console.error('Erro ao buscar os dados:', error));
+  </script>
 </body>
 </html>
+
 
 
 
